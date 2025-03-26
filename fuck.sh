@@ -7,8 +7,8 @@ find . -depth -type f -o -type d | while IFS= read -r file; do
         # 分离路径和文件名
         dir=$(dirname "$file")
         base=$(basename "$file")
-        # 使用 sed 替换 \ / | 为单个空格
-        newbase=$(echo "$base" | sed 's/[\\\/|]/ /g')
+        # 删除文件名中的空格
+        newbase=$(echo "$base" | tr -d ' ')
         # 构造新的文件名
         newname="$dir/$newbase"
         # 避免空文件名或重复重命名
